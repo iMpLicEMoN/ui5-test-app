@@ -1,0 +1,193 @@
+<mvc:View
+	controllerName="mycompany.myapp.controller.Worklist"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout"
+	xmlns="sap.m">
+	<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="Header Title"/>
+					</f:heading>
+
+					<f:expandedContent>
+						<Text text="This is a subheading"/>
+					</f:expandedContent>
+					<f:snappedContent>
+						<Text text="This is a subheading"/>
+					</f:snappedContent>
+					<f:actions>
+						<Button
+								text="Edit"
+								type="Emphasized"
+								press="toggleAreaPriority"/>
+						<Button
+								text="Delete"
+								type="Transparent"/>
+						<Button
+								text="Copy"
+								type="Transparent"/>
+						<Button
+								text="Toggle Footer"
+								type="Transparent"
+								press="onToggleFooter"/>
+						<Button
+								icon="sap-icon://action"
+								type="Transparent"/>
+					</f:actions>
+					<f:navigationActions>
+						<Button
+								icon="sap-icon://full-screen"
+								type="Transparent" />
+						<Button
+								icon="sap-icon://exit-full-screen"
+								type="Transparent" />
+						<Button
+								icon="sap-icon://decline"
+								type="Transparent" />
+					</f:navigationActions>
+				</f:DynamicPageTitle>
+			</f:title>
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader pinnable="true">
+					<f:content>
+						<FlexBox
+								alignItems="Start"
+								justifyContent="SpaceBetween">
+							<items>
+								<Panel
+										backgroundDesign="Transparent"
+										class="sapUiNoContentPadding sapUiSmallMarginTop">
+									<content>
+										<layout:HorizontalLayout
+												allowWrapping="true">
+											<layout:VerticalLayout
+													class="sapUiMediumMarginEnd">
+												<ObjectAttribute title="Location" text="Warehouse A"/>
+												<ObjectAttribute title="Halway" text="23L"/>
+												<ObjectAttribute title="Rack" text="34"/>
+											</layout:VerticalLayout>
+											<layout:VerticalLayout>
+												<ObjectAttribute title="Availability"/>
+												<ObjectStatus text="In Stock" state="Success" />
+											</layout:VerticalLayout>
+										</layout:HorizontalLayout>
+									</content>
+								</Panel>
+							</items>
+						</FlexBox>
+					</f:content>
+				</f:DynamicPageHeader>
+			</f:header>
+			<f:content>
+					<Table
+							id="table"
+							busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+							class="sapUiResponsiveMargin sapUiNoMarginTop"
+							growing="true"
+							growingScrollToLoad="true"
+							noDataText="{worklistView>/tableNoDataText}"
+							updateFinished="onUpdateFinished"
+							width="auto"
+							items="{
+								path: 'groups>/',
+								sorter: {
+									path: 'ProductName',
+									descending: false
+								},
+								parameters: {
+									'expand': 'Supplier'
+								}
+							}">
+						<headerToolbar>
+							<Toolbar>
+								<Title
+										id="tableHeader"
+										text="{worklistView>/worklistTableTitle}"/>
+								<ToolbarSpacer/>
+								<SearchField
+										id="searchField"
+										search="onSearch"
+										tooltip="{i18n>worklistSearchTooltip}"
+										width="auto"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column id="nameColumn">
+								<Text
+										id="nameColumnTitle"
+										text="{i18n>TableNameColumnTitle}"/>
+							</Column>
+							<Column
+									id="supplierNameColumn"
+									demandPopin="false"
+									minScreenWidth="Tablet">
+								<Text text="{i18n>TableSupplierColumnTitle}"/>
+							</Column>
+							<Column
+									id="unitPriceColumn"
+									hAlign="End"
+									demandPopin="true"
+									minScreenWidth="Tablet">
+								<Text text="{i18n>TablePriceColumnTitle}"/>
+							</Column>
+							<Column id="unitsOnOrderColumn"
+									demandPopin="true"
+									minScreenWidth="Tablet"
+									hAlign="End">
+								<Text text="{i18n>TableUnitsOrderedColumnTitle}"/>
+							</Column>
+							<Column id="unitsInStockColumn"
+									hAlign="End">
+								<Text text="{i18n>TableUnitsInStockColumnTitle}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem
+									press="onPress"
+									type="Navigation">
+								<cells>
+									<ObjectIdentifier
+											title="{groups>ProductName}"/>
+									<Text text = "123"/>
+									<ObjectNumber
+											unit="EUR"
+											number="{
+									path: 'groups>UnitPrice',
+									formatter: '.formatter.numberUnit'
+								}"/>
+									<ObjectNumber
+											number="{groups>UnitsOnOrder}"
+											unit="PC"/>
+									<ObjectNumber
+											number="{groups>UnitsInStock}"
+											unit="PC"
+											state="{
+									path: 'groups>UnitsInStock',
+									formatter: '.formatter.quantityState'
+								}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+
+			</f:content>
+			<!-- DynamicPage Footer -->
+			<f:footer>
+				<OverflowToolbar>
+					<Button icon="sap-icon://message-popup"
+							text="{/messagesLength}"
+							type="Emphasized"
+							press="onMessageButtonPress"
+							visible="{= !!${/messagesLength}}"/>
+					<ToolbarSpacer/>
+					<Button type="Accept" text="Accept"/>
+					<Button type="Reject" text="Reject"/>
+				</OverflowToolbar>
+			</f:footer>
+		</f:DynamicPage>
+</mvc:View>
