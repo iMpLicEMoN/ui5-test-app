@@ -94,7 +94,7 @@
 							updateFinished="onUpdateFinished"
 							width="auto"
 							items="{
-								path: 'groups>/',
+								path: 'Mines>/',
 								sorter: {
 									path: 'ProductName',
 									descending: false
@@ -123,27 +123,27 @@
 										text="{i18n>TableNameColumnTitle}"/>
 							</Column>
 							<Column
-									id="supplierNameColumn"
+									id="locationColumn"
 									demandPopin="false"
 									minScreenWidth="Tablet">
-								<Text text="{i18n>TableSupplierColumnTitle}"/>
+								<Text text="{i18n>TableLocationColumnTitle}"/>
 							</Column>
 							<Column
-									id="unitPriceColumn"
+									id="workersColumn"
 									hAlign="End"
 									demandPopin="true"
 									minScreenWidth="Tablet">
-								<Text text="{i18n>TablePriceColumnTitle}"/>
+								<Text text="{i18n>TableWorkersColumnTitle}"/>
 							</Column>
-							<Column id="unitsOnOrderColumn"
+							<Column id="vehiclesColumn"
 									demandPopin="true"
 									minScreenWidth="Tablet"
 									hAlign="End">
-								<Text text="{i18n>TableUnitsOrderedColumnTitle}"/>
+								<Text text="{i18n>TableVehiclesColumnTitle}"/>
 							</Column>
-							<Column id="unitsInStockColumn"
+							<Column id="rawValuePerDayColumn"
 									hAlign="End">
-								<Text text="{i18n>TableUnitsInStockColumnTitle}"/>
+								<Text text="{i18n>TableRawValuePerDayColumnTitle}"/>
 							</Column>
 						</columns>
 						<items>
@@ -152,24 +152,19 @@
 									type="Navigation">
 								<cells>
 									<ObjectIdentifier
-											title="{groups>ProductName}"/>
-									<Text text = "123"/>
+											title="{Mines>MineName}"/>
+									<ObjectIdentifier
+											title="{Mines>Location}"/>
 									<ObjectNumber
-											unit="EUR"
-											number="{
-									path: 'groups>UnitPrice',
-									formatter: '.formatter.numberUnit'
-								}"/>
-									<ObjectNumber
-											number="{groups>UnitsOnOrder}"
+											number="{Mines>Workers}"
 											unit="PC"/>
 									<ObjectNumber
-											number="{groups>UnitsInStock}"
-											unit="PC"
-											state="{
-									path: 'groups>UnitsInStock',
-									formatter: '.formatter.quantityState'
-								}"/>
+											number="{Mines>Vehicles}"
+											unit="PC"/>
+									<ObjectNumber
+											number="{Mines>RawValuePerDay}"
+											unit="M^3"/>
+
 								</cells>
 							</ColumnListItem>
 						</items>

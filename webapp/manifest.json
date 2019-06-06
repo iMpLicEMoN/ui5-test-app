@@ -74,9 +74,9 @@
 					}
 				}
 			},
-			"groups": {
+			"Mines": {
 				"type": "sap.ui.model.json.JSONModel",
-				"uri": "model/groups.json"
+				"uri": "model/Mines.json"
 			}
 		},
 		"routing": {
