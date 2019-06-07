@@ -1,7 +1,7 @@
 {
 	"_version": "1.8.0",
 	"sap.app": {
-		"id": "mycompany.myapp",
+		"id": "ui5testapp",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
@@ -9,118 +9,91 @@
 		"applicationVersion": {
 			"version": "1.0.0"
 		},
+		"ach": "CA-UI5-FST",
 		"dataSources": {
-			"mainService": {
-				"uri": "/destinations/northwind/V2/Northwind/Northwind.svc/",
+			"employeeRemote": {
+				"uri": "/here/goes/your/serviceUrl/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
-					"localUri": "localService/metadata.xml"
+					"localUri" : "localService/metadata.xml"
 				}
 			}
-		},
-		"sourceTemplate": {
-			"id": "sap.ui.ui5-template-plugin.1worklist",
-			"version": "1.30.4"
 		}
 	},
 	"sap.ui": {
 		"technology": "UI5",
-		"icons": {
-			"icon": "sap-icon://task",
-			"favIcon": "",
-			"phone": "",
-			"phone@2": "",
-			"tablet": "",
-			"tablet@2": ""
-		},
 		"deviceTypes": {
 			"desktop": true,
 			"tablet": true,
 			"phone": true
 		}
-	},
+  	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "mycompany.myapp.view.App",
+			"viewName": "ui5testapp.view.App",
 			"type": "XML",
 			"async": true,
 			"id": "app"
 		},
 		"dependencies": {
-			"minUI5Version": "1.30.0",
+			"minUI5Version": "1.30",
 			"libs": {
-				"sap.ui.core": {},
-				"sap.m": {},
-				"sap.ui.layout": {}
+				"sap.m": { }
 			}
-		},
-		"contentDensities": {
-			"compact": true,
-			"cozy": true
 		},
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "mycompany.myapp.i18n.i18n"
+					"bundleName": "ui5testapp.i18n.i18n"
 				}
 			},
 			"": {
-				"dataSource": "mainService",
-				"settings": {
-					"metadataUrlParams": {
-						"sap-documentation": "heading"
-					}
-				}
+				"dataSource": "employeeRemote"
 			},
-			"Mines": {
-				"type": "sap.ui.model.json.JSONModel",
-				"uri": "model/Mines.json"
+			"view": {
+				"type": "sap.ui.model.json.JSONModel"
 			}
 		},
 		"routing": {
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
-				"viewPath": "mycompany.myapp.view",
+				"viewPath": "ui5testapp.view",
 				"controlId": "app",
 				"controlAggregation": "pages",
+				"transition": "slide",
 				"bypassed": {
 					"target": "notFound"
 				},
 				"async": true
 			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "worklist",
-					"target": "worklist"
-				},
-				{
-					"pattern": "Products/{objectId}",
-					"name": "object",
-					"target": "object"
-				}
-			],
+			"routes": [{
+				"pattern": "",
+				"name": "employeeList",
+				"target": "employees"
+			}, {
+				"pattern": "employees/{employeeId}:?query:",
+				"name": "employee",
+				"target": "employee"
+			}],
 			"targets": {
-				"worklist": {
-					"viewName": "Worklist",
-					"viewId": "worklist",
-					"viewLevel": 1
-				},
-				"object": {
-					"viewName": "Object",
-					"viewId": "object",
-					"viewLevel": 2
-				},
-				"objectNotFound": {
-					"viewName": "ObjectNotFound",
-					"viewId": "objectNotFound"
-				},
 				"notFound": {
+					"viewId": "notFound",
 					"viewName": "NotFound",
-					"viewId": "notFound"
+					"transition": "show"
+				},
+				"employees": {
+					"viewId": "employeeList",
+					"viewPath": "ui5testapp.view.employee",
+					"viewName": "EmployeeList",
+					"viewLevel" : 1
+				},
+				"employee": {
+					"viewId": "employee",
+					"viewName": "employee.Employee",
+					"viewLevel" : 2
 				}
 			}
 		}
