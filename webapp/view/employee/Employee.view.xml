@@ -6,7 +6,7 @@
 	busyIndicatorDelay="0">
 	<Page
 		id="employeePage"
-		title="{view>/selectedTabKey} {FirstName} {LastName}"
+		title="{view>/selectedTab}: {FirstName} {LastName}"
 		showNavButton="true"
 		navButtonPress="onNavBack"
 		class="sapUiResponsiveContentPadding">
@@ -14,18 +14,19 @@
 			<IconTabBar
 				id="iconTabBar"
 				headerBackgroundDesign="Transparent"
+				expandable="false"
 				class="sapUiResponsiveContentPadding"
 				select="onTabSelect"
 				selectedKey="{view>/selectedTabKey}">
 				<items>
-					<IconTabFilter id="infoTab" text="{i18n>tabInfo}" key="Info">
+					<IconTabFilter id="infoTab" text="{i18n>tabInfo}" key="tabInfo">
 						<Panel
 							id="employeePanel"
 							width="auto"
 							class="sapUiNoContentPadding">
 							<headerToolbar>
 								<Toolbar>
-									<Title text="{i18n>EmployeeIDColon} {EmployeeID}" level="H2"/>
+									<Title text="{i18n>EmployeeIDColon}: {EmployeeID}" level="H2"/>
 								</Toolbar>
 							</headerToolbar>
 							<content>
@@ -54,14 +55,36 @@
 							</content>
 						</Panel>
 					</IconTabFilter>
-					<IconTabFilter id="projectsTab" text="{i18n>tabProjects}" key="Projects">
-						<!--<mvc:XMLView viewName="ui5testapp.view.employee.ResumeProjects"></mvc:XMLView>-->
+					<IconTabFilter id="projectsTab" text="{i18n>tabProjects}" key="tabProjects">
+						<Table
+							id="projectsList"
+							showNoData="false"
+							items="{Projects}">
+							<items>
+								<ColumnListItem>
+									<cells>
+										<ObjectIdentifier title="{Projects/>ProjectName}"/>
+										<Text text = "{Projects>ProjectDescription}"/>
+										<Text text = "{Projects/0/ProjectDuration}"/>
+										<Text text = "{/0/ProjectScore}"/>
+										<Text text = "asdasd"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+							<columns>
+			                    <Column ></Column>
+			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
+			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
+			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
+			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
+			                 </columns>
+						</Table>
 					</IconTabFilter>
-					<IconTabFilter id="hobbiesTab" text="{i18n>tabHobbies}" key="Hobbies">
-						<!--<Text text="{Hobbies}" />-->
+					<IconTabFilter id="hobbiesTab" text="{i18n>tabHobbies}" key="tabHobbies">
+						<Text text="text" />
 					</IconTabFilter>
-					<IconTabFilter id="notesTab" text="{i18n>tabNotes}" key="Notes">
-						<!--<Text text="{Notes}" />-->
+					<IconTabFilter id="notesTab" text="{i18n>tabNotes}" key="tabNotes">
+						<Text text="text" />
 					</IconTabFilter>
 				</items>
 			</IconTabBar>

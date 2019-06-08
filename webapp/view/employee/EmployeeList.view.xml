@@ -5,18 +5,73 @@
 	<Page id="employeeListPage" title="{i18n>EmployeeList}"
 		showNavButton="false"
 		navButtonPress="onNavBack"
-		class="sapUiResponsiveContentPadding">
+		height="100%">
 		<content>
-			<List id="employeeList" headerText="{i18n>ListOfAllEmployees}" items="{/Employees}">
+
+			<Table
+				id="employeeListHeader"
+				width="auto"
+				showNoData="false">
+				<headerToolbar>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<SearchField
+							id="searchField"
+							search="onSearch"
+							tooltip="asdasdasd"
+							width="auto"/>
+				</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="employeeIDColumn">
+						<Text text="{i18n>EmployeeIDColon}"/>
+					</Column>
+					<Column
+						id="firstNameColumn"
+						minScreenWidth="Tablet">
+						<Text text="{i18n>formFirstName}"/>
+					</Column>
+					<Column
+						id="lastNameColumn"
+						minScreenWidth="Tablet">
+						<Text text="{i18n>formLastName}"/>
+					</Column>
+				</columns>
+			</Table>
+			
+
+
+		<ScrollContainer vertical="true" focusable="false" height="30%">
+			<Table
+				id="employeeList"
+
+				showNoData="false"
+				items="{
+					path: '/Employees',
+					sorter: {
+						path: 'EmployeeID',
+						descending: false
+					}
+				}">
 				<items>
-					<StandardListItem
-						title="{FirstName} {LastName}"
-						iconDensityAware="false"
-						iconInset="false"
-						type="Navigation"
-						press="onListItemPressed"/>
+					<ColumnListItem
+							press="onListItemPressed"
+							type="Navigation">
+						<cells>
+							<ObjectIdentifier title="{EmployeeID}"/>
+							<Text text = "{FirstName}"/>
+							<Text text = "{LastName}"/>
+						</cells>
+					</ColumnListItem>
 				</items>
-			</List>
+				<columns>
+                    <Column ></Column>
+                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
+                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
+
+                 </columns>
+			</Table>
+		</ScrollContainer>
 		</content>
 	</Page>
 </mvc:View>
