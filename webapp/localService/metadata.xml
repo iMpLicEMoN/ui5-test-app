@@ -16,18 +16,45 @@
 				<Property Name="PostalCode" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
 				<Property Name="Country" Type="Edm.String" Nullable="true" MaxLength="15" Unicode="true" FixedLength="false" />
 				<Property Name="HomePhone" Type="Edm.String" Nullable="true" MaxLength="24" Unicode="true" FixedLength="false" />
-				<ComplexType Name="Projects">
+				<NavigationProperty Name="Project" Relationship="NavigationModel.FK_Employees_Projects" FromRole="Employees" ToRole="Projects"/>
+			</EntityType>
+
+			<EntityType Name="Project">
+				<Key>
+					<PropertyRef Name="ProjectID"/>
+				</Key>
+					<Property Name="ProjectID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation"/>
+					<Property Name="EmployeeID" Type="Edm.Int32" Nullable="false" />
 					<Property Name="ProjectName" Type="Edm.String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="false" />
 					<Property Name="ProjectDescription" Type="Edm.String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="false" />
 					<Property Name="ProjectDuration" Type="Edm.Int32" Nullable="false" />
 					<Property Name="ProjectScore" Type="Edm.Int32" Nullable="false" />
 					<Property Name="ProjectStatus" Type="Edm.String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="false" />
-				</ComplexType>
 			</EntityType>
 
+			<Association Name="NavigationModel.FK_Employees_Projects">
+				<End Role="Employees" Type="NavigationModel.Employee" Multiplicity="1"/>
+				<End Role="Projects" Type="NavigationModel.Projects" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="Employees">
+						<PropertyRef Name="EmployeeID"/>
+					</Principal>
+					<Dependent Role="Projects">
+						<PropertyRef Name="EmployeeID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
 
 			<EntityContainer Name="NavigationEntities" p7:LazyLoadingEnabled="true" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+
 				<EntitySet Name="Employees" EntityType="NavigationModel.Employee" />
+				<EntitySet Name="Projects" EntityType="NavigationModel.Employee.Project" />
+
+				<AssociationSet Name="FK_Employees_Projects" Association="NavigationModel.FK_Employees_Projects">
+					<End EntitySet="Employees" Role="Employees"/>
+					<End EntitySet="Projects" Role="Projects"/>
+				</AssociationSet>
+
 			</EntityContainer>
 
 		</Schema>

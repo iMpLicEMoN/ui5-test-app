@@ -77,6 +77,10 @@
 				"pattern": "employees/{employeeId}:?query:",
 				"name": "employee",
 				"target": "employee"
+			}, {
+				"pattern": "employees/{employeeId}/projects:?query:",
+				"name": "employeeProjects",
+				"target": "employeeProjects"
 			}],
 			"targets": {
 				"notFound": {
@@ -94,6 +98,11 @@
 					"viewId": "employee",
 					"viewName": "employee.Employee",
 					"viewLevel" : 2
+				},
+				"employeeProjects": {
+					"viewId": "projects",
+					"viewName": "employee.Projects",
+					"viewLevel" : 3
 				}
 			}
 		}

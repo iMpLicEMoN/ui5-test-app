@@ -63,16 +63,22 @@
 							<items>
 								<ColumnListItem>
 									<cells>
-										<ObjectIdentifier title="{Projects/>ProjectName}"/>
-										<Text text = "{Projects>ProjectDescription}"/>
-										<Text text = "{Projects/0/ProjectDuration}"/>
-										<Text text = "{/0/ProjectScore}"/>
-										<Text text = "asdasd"/>
+										<ObjectIdentifier title="{ProjectID}"/>
+										<!--<Text text = "{ProjectID}"/>-->
+										<Text text = "{Project/EmployeeID}"/>
+										<Text text = "{ProjectName}"/>
+										<Text text = "{ProjectDescription}"/>
+										<Text text = "{ProjectDuration}"/>
+										<Text text = "{ProjectScore}"/>
+										<Text text = "{ProjectStatus}"/>
+										
 									</cells>
 								</ColumnListItem>
 							</items>
 							<columns>
 			                    <Column ></Column>
+			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
+			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
 			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
 			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
 			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>

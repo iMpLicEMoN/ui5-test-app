@@ -9,39 +9,11 @@
 		"PostalCode": "546234",
 		"Country": "РФ",
 		"HomePhone": "33-25-64",
-		"Projects": [
-			{
-			"ProjectName": "project1",
-			"ProjectDescription": "project1",
-			"ProjectDuration": 11,
-			"ProjectScore": 11,
-			"ProjectStatus": "done"
-			},
-			
-			{
-			"ProjectName": "project2",
-			"ProjectDescription": "project2",
-			"ProjectDuration": 11,
-			"ProjectScore": 11,
-			"ProjectStatus": "done"
-			},
-			
-			{
-			"ProjectName": "project3",
-			"ProjectDescription": "project3",
-			"ProjectDuration": 11,
-			"ProjectScore": 11,
-			"ProjectStatus": "done"
-			},
-			
-			{
-			"ProjectName": "project4",
-			"ProjectDescription": "project4",
-			"ProjectDuration": 11,
-			"ProjectScore": 11,
-			"ProjectStatus": "done"
+		"Project" : {
+			"__deferred": {
+				"uri": "/here/goes/your/serviceUrl/Employees(1)/Projects"
 			}
-		]
+		}
 	},
 	{
 		"EmployeeID": 2,
@@ -53,31 +25,11 @@
 		"PostalCode": "Нурсултан",
 		"Country": "Нурсултан",
 		"HomePhone": "Нурсултан",
-		"Projects": [
-			{
-			"ProjectName": "asd",
-			"ProjectDescription": "asd",
-			"ProjectDuration": 11,
-			"ProjectScore": 11,
-			"ProjectStatus": "done"
-			},
-			
-			{
-			"ProjectName": "dsadsa",
-			"ProjectDescription": "dsadsa",
-			"ProjectDuration": 11,
-			"ProjectScore": 11,
-			"ProjectStatus": "done"
-			},
-			
-			{
-			"ProjectName": "asddsa",
-			"ProjectDescription": "asddsa",
-			"ProjectDuration": 11,
-			"ProjectScore": 11,
-			"ProjectStatus": "done"
+		"Project" : {
+			"__deferred": {
+				"uri": "/here/goes/your/serviceUrl/Employees(2)/Projects"
 			}
-		]
+		}
 	},
 	{
 		"EmployeeID": 3,
@@ -89,23 +41,11 @@
 		"PostalCode": "236842",
 		"Country": "РФ",
 		"HomePhone": "555-3412",
-		"Projects": [
-			{
-			"ProjectName": "qwdq",
-			"ProjectDescription": "qwdq",
-			"ProjectDuration": 11,
-			"ProjectScore": 11,
-			"ProjectStatus": "done"
-			},
-			
-			{
-			"ProjectName": "qwdqwd",
-			"ProjectDescription": "qwdqq",
-			"ProjectDuration": 11,
-			"ProjectScore": 11,
-			"ProjectStatus": "done"
+		"Project" : {
+			"__deferred": {
+				"uri": "/here/goes/your/serviceUrl/Employees(3)/Projects"
 			}
-		]
+		}
 	},
 	{
 		"EmployeeID": 4,

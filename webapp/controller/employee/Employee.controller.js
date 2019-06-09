@@ -11,6 +11,8 @@ sap.ui.define([
 			var oRouter = this.getRouter();
 
 			oRouter.getRoute("employee").attachMatched(this._onRouteMatched, this);
+			
+
 		},
 
 		_onRouteMatched : function (oEvent) {
@@ -18,7 +20,7 @@ sap.ui.define([
 			var oArgs, oView, oQuery;
 			oArgs = oEvent.getParameter("arguments");
 			oView = this.getView();
-
+			
 			oView.bindElement({
 				path : "/Employees(" + oArgs.employeeId + ")",
 				events : {
