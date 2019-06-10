@@ -8,12 +8,7 @@
 		"Region": "Московский",
 		"PostalCode": "546234",
 		"Country": "РФ",
-		"HomePhone": "33-25-64",
-		"Project" : {
-			"__deferred": {
-				"uri": "/here/goes/your/serviceUrl/Employees(1)/Projects"
-			}
-		}
+		"HomePhone": "33-25-64"
 	},
 	{
 		"EmployeeID": 2,
@@ -24,12 +19,7 @@
 		"Region": "Нурсултан",
 		"PostalCode": "Нурсултан",
 		"Country": "Нурсултан",
-		"HomePhone": "Нурсултан",
-		"Project" : {
-			"__deferred": {
-				"uri": "/here/goes/your/serviceUrl/Employees(2)/Projects"
-			}
-		}
+		"HomePhone": "Нурсултан"
 	},
 	{
 		"EmployeeID": 3,
@@ -40,12 +30,7 @@
 		"Region": "Московский",
 		"PostalCode": "236842",
 		"Country": "РФ",
-		"HomePhone": "555-3412",
-		"Project" : {
-			"__deferred": {
-				"uri": "/here/goes/your/serviceUrl/Employees(3)/Projects"
-			}
-		}
+		"HomePhone": "555-3412"
 	},
 	{
 		"EmployeeID": 4,

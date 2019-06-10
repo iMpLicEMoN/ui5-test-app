@@ -49,8 +49,8 @@ sap.ui.define([
 				},true);
 			}
 			
-			var oTable = this.byId("projectsList");
-			oTable.bindElement("/Employees/" + oArgs.employeeId + "");
+			// var oTable = this.byId("projectsList");
+			// oTable.bindElement("/Employees/" + oArgs.employeeId + "");
 		},
 		
 		onTabSelect : function (oEvent){

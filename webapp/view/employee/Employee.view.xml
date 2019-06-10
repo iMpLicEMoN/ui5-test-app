@@ -59,13 +59,12 @@
 						<Table
 							id="projectsList"
 							showNoData="false"
-							items="{Projects}">
+							items="{Project}">
 							<items>
 								<ColumnListItem>
 									<cells>
 										<ObjectIdentifier title="{ProjectID}"/>
-										<!--<Text text = "{ProjectID}"/>-->
-										<Text text = "{Project/EmployeeID}"/>
+										<Text text = "{EmployeeID}"/>
 										<Text text = "{ProjectName}"/>
 										<Text text = "{ProjectDescription}"/>
 										<Text text = "{ProjectDuration}"/>

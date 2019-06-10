@@ -21,7 +21,7 @@
 
 			<EntityType Name="Project">
 				<Key>
-					<PropertyRef Name="ProjectID"/>
+				    <PropertyRef Name="ProjectID"/>
 				</Key>
 					<Property Name="ProjectID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation"/>
 					<Property Name="EmployeeID" Type="Edm.Int32" Nullable="false" />
@@ -32,9 +32,9 @@
 					<Property Name="ProjectStatus" Type="Edm.String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="false" />
 			</EntityType>
 
-			<Association Name="NavigationModel.FK_Employees_Projects">
+			<Association Name="FK_Employees_Projects">
 				<End Role="Employees" Type="NavigationModel.Employee" Multiplicity="1"/>
-				<End Role="Projects" Type="NavigationModel.Projects" Multiplicity="*"/>
+				<End Role="Projects" Type="NavigationModel.Project" Multiplicity="*"/>
 				<ReferentialConstraint>
 					<Principal Role="Employees">
 						<PropertyRef Name="EmployeeID"/>
@@ -45,10 +45,11 @@
 				</ReferentialConstraint>
 			</Association>
 
+
 			<EntityContainer Name="NavigationEntities" p7:LazyLoadingEnabled="true" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
 
 				<EntitySet Name="Employees" EntityType="NavigationModel.Employee" />
-				<EntitySet Name="Projects" EntityType="NavigationModel.Employee.Project" />
+				<EntitySet Name="Projects" EntityType="NavigationModel.Project" />
 
 				<AssociationSet Name="FK_Employees_Projects" Association="NavigationModel.FK_Employees_Projects">
 					<End EntitySet="Employees" Role="Employees"/>
