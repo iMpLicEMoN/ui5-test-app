@@ -3,6 +3,9 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:f="sap.ui.layout.form"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 	busyIndicatorDelay="0">
 	<Page
 		id="employeePage"
@@ -55,41 +58,23 @@
 							</content>
 						</Panel>
 					</IconTabFilter>
+					
 					<IconTabFilter id="projectsTab" text="{i18n>tabProjects}" key="tabProjects">
-						<Table
-							id="projectsList"
-							showNoData="false"
-							items="{Project}">
-							<items>
-								<ColumnListItem>
-									<cells>
-										<ObjectIdentifier title="{ProjectID}"/>
-										<Text text = "{EmployeeID}"/>
-										<Text text = "{ProjectName}"/>
-										<Text text = "{ProjectDescription}"/>
-										<Text text = "{ProjectDuration}"/>
-										<Text text = "{ProjectScore}"/>
-										<Text text = "{ProjectStatus}"/>
-										
-									</cells>
-								</ColumnListItem>
-							</items>
-							<columns>
-			                    <Column ></Column>
-			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
-			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
-			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
-			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
-			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
-			                    <Column minScreenWidth="tablet" demandPopin="true"></Column>
-			                 </columns>
-						</Table>
-					</IconTabFilter>
-					<IconTabFilter id="hobbiesTab" text="{i18n>tabHobbies}" key="tabHobbies">
-						<Text text="text" />
-					</IconTabFilter>
-					<IconTabFilter id="notesTab" text="{i18n>tabNotes}" key="tabNotes">
-						<Text text="text" />
+						<smartTable:SmartTable 
+			        		id="smartTable_ResponsiveTable"
+			        		smartFilterId="smartFilterBar" 
+			        		tableType="ResponsiveTable" 
+			        		editable="false"
+			        		entitySet="Projects" 
+			        		tableBindingPath="Project"
+			        		useVariantManagement="true"
+			        		useTablePersonalisation="true" 
+			        		header="{i18n>tabProjects}" 
+			        		showRowCount="true"
+			        		useExportToExcel="false" 
+			        		enableAutoBinding="true"
+			        		persistencyKey="SmartTablePKey">
+			        	</smartTable:SmartTable>
 					</IconTabFilter>
 				</items>
 			</IconTabBar>

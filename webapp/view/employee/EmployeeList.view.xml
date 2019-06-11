@@ -8,6 +8,7 @@
 		height="100%">
 		<content>
 
+		<!--Table with only column headers-->
 			<Table
 				id="employeeListHeader"
 				width="auto"
@@ -17,8 +18,7 @@
 					<ToolbarSpacer/>
 					<SearchField
 							id="searchField"
-							search="onSearch"
-							tooltip="asdasdasd"
+							liveChange="onSearch"
 							width="auto"/>
 				</Toolbar>
 				</headerToolbar>
@@ -40,11 +40,10 @@
 			</Table>
 			
 
-
+	<!--Table with only items, without column headers-->
 		<ScrollContainer vertical="true" focusable="false" height="30%">
 			<Table
 				id="employeeList"
-
 				showNoData="false"
 				items="{
 					path: '/Employees',
@@ -68,7 +67,6 @@
                     <Column ></Column>
                     <Column minScreenWidth="tablet" demandPopin="true"></Column>
                     <Column minScreenWidth="tablet" demandPopin="true"></Column>
-
                  </columns>
 			</Table>
 		</ScrollContainer>

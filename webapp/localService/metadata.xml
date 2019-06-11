@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:sap="http://www.sap.com/Protocols/SAPData">
 	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
 		<Schema Namespace="NavigationModel" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
 
@@ -7,29 +7,29 @@
 				<Key>
 					<PropertyRef Name="EmployeeID" />
 				</Key>
-				<Property Name="EmployeeID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-				<Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-				<Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
-				<Property Name="Address" Type="Edm.String" Nullable="true" MaxLength="60" Unicode="true" FixedLength="false" />
-				<Property Name="City" Type="Edm.String" Nullable="true" MaxLength="15" Unicode="true" FixedLength="false" />
-				<Property Name="Region" Type="Edm.String" Nullable="true" MaxLength="15" Unicode="true" FixedLength="false" />
-				<Property Name="PostalCode" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
-				<Property Name="Country" Type="Edm.String" Nullable="true" MaxLength="15" Unicode="true" FixedLength="false" />
-				<Property Name="HomePhone" Type="Edm.String" Nullable="true" MaxLength="24" Unicode="true" FixedLength="false" />
+				<Property sap:visible="false" Name="EmployeeID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+				<Property sap:aggregation-role="dimension" Name="LastName" Type="Edm.String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+				<Property sap:aggregation-role="dimension" Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+				<Property sap:aggregation-role="dimension" Name="Address" Type="Edm.String" Nullable="true" MaxLength="60" Unicode="true" FixedLength="false" />
+				<Property sap:aggregation-role="dimension" Name="City" Type="Edm.String" Nullable="true" MaxLength="15" Unicode="true" FixedLength="false" />
+				<Property sap:aggregation-role="dimension" Name="Region" Type="Edm.String" Nullable="true" MaxLength="15" Unicode="true" FixedLength="false" />
+				<Property sap:aggregation-role="dimension" Name="PostalCode" Type="Edm.String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
+				<Property sap:aggregation-role="dimension" Name="Country" Type="Edm.String" Nullable="true" MaxLength="15" Unicode="true" FixedLength="false" />
+				<Property sap:aggregation-role="dimension" Name="HomePhone" Type="Edm.String" Nullable="true" MaxLength="24" Unicode="true" FixedLength="false" />
 				<NavigationProperty Name="Project" Relationship="NavigationModel.FK_Employees_Projects" FromRole="Employees" ToRole="Projects"/>
 			</EntityType>
 
-			<EntityType Name="Project">
+			<EntityType Name="Project" sap:semantics="aggregate" sap:content-version="1">
 				<Key>
 				    <PropertyRef Name="ProjectID"/>
 				</Key>
-					<Property Name="ProjectID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation"/>
-					<Property Name="EmployeeID" Type="Edm.Int32" Nullable="false" />
-					<Property Name="ProjectName" Type="Edm.String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="false" />
-					<Property Name="ProjectDescription" Type="Edm.String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="false" />
-					<Property Name="ProjectDuration" Type="Edm.Int32" Nullable="false" />
-					<Property Name="ProjectScore" Type="Edm.Int32" Nullable="false" />
-					<Property Name="ProjectStatus" Type="Edm.String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="false" />
+					<Property Name="ProjectID" sap:label="ID" sap:filterable="true" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation"/>
+					<Property Name="EmployeeID" sap:label="Employee" sap:filterable="true" Type="Edm.Int32" Nullable="false" />
+					<Property sap:aggregation-role="dimension" sap:label="Name" sap:filterable="true" Name="ProjectName" Type="Edm.String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="false" />
+					<Property sap:aggregation-role="dimension" sap:label="Description" sap:filterable="true" Name="ProjectDescription" Type="Edm.String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="false" />
+					<Property sap:aggregation-role="measure" sap:label="Duration" sap:filterable="false" Name="ProjectDuration" Type="Edm.Int32" Nullable="false" />
+					<Property sap:aggregation-role="measure" sap:label="Score" sap:filterable="false" Name="ProjectScore" Type="Edm.Int32" Nullable="false" />
+					<Property sap:aggregation-role="dimension" sap:label="Status" sap:filterable="true" Name="ProjectStatus" Type="Edm.String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="false" />
 			</EntityType>
 
 			<Association Name="FK_Employees_Projects">
@@ -49,7 +49,9 @@
 			<EntityContainer Name="NavigationEntities" p7:LazyLoadingEnabled="true" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
 
 				<EntitySet Name="Employees" EntityType="NavigationModel.Employee" />
-				<EntitySet Name="Projects" EntityType="NavigationModel.Project" />
+				<EntitySet Name="Projects" EntityType="NavigationModel.Project" 
+					sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1" />
 
 				<AssociationSet Name="FK_Employees_Projects" Association="NavigationModel.FK_Employees_Projects">
 					<End EntitySet="Employees" Role="Employees"/>
@@ -57,6 +59,35 @@
 				</AssociationSet>
 
 			</EntityContainer>
+			
+			<Annotations Target="NavigationModel.Project"
+				xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="com.sap.vocabularies.UI.v1.LineItem">
+					<Collection>
+						<Record Type="com.sap.vocabularies.UI.v1.DataField">
+							<PropertyValue Property="Value" Path="ProjectID" />
+						</Record>
+						<Record Type="com.sap.vocabularies.UI.v1.DataField">
+							<PropertyValue Property="Value" Path="EmployeeID" />
+						</Record>
+						<Record Type="com.sap.vocabularies.UI.v1.DataField">
+							<PropertyValue Property="Value" Path="ProjectName" />
+						</Record>
+						<Record Type="com.sap.vocabularies.UI.v1.DataField">
+							<PropertyValue Property="Value" Path="ProjectDescription" />
+						</Record>
+						<Record Type="com.sap.vocabularies.UI.v1.DataField">
+							<PropertyValue Property="Value" Path="ProjectDuration" />
+						</Record>
+						<Record Type="com.sap.vocabularies.UI.v1.DataField">
+							<PropertyValue Property="Value" Path="ProjectScore" />
+						</Record>
+						<Record Type="com.sap.vocabularies.UI.v1.DataField">
+							<PropertyValue Property="Value" Path="ProjectStatus" />
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
 
 		</Schema>
 	</edmx:DataServices>
